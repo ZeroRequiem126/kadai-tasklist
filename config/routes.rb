@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  get 'kadai_tasklists/create'
 
-  get 'sessions/create'
-
-  get 'sessions/destroy'
+  get 'kadai_tasklists/destroy'
 
   root to: 'toppages#index'
 
@@ -13,4 +11,6 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'users#new'
   resources :users, only: [:index, :show, :new, :create]
+
+  resources :kadai_tasklists, only: [:create, :destroy]
 end

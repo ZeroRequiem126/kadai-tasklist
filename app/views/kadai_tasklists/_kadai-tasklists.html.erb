@@ -1,0 +1,23 @@
+<ul class="media-list">
+  <% kadai_tasklists.each do |kadai_tasklist| %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(kadai_tasklist.user, options = { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to kadai_tasklist.user.name, user_path(kadai_tasklist.user) %> <span class="text-muted">posted at <%= kadai_tasklist.created_at %></span>
+        </div>
+        <div>
+          <p><%= kadai_tasklist.content %></p>
+        </div>
+        <div>
+          <% if current_user == kadai_tasklist.user %>
+            <%= link_to "Delete", kadai_tasklist, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate kadai_tasklists %>
+</ul>

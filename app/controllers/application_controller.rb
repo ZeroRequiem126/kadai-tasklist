@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include SessionsHelper
-
+  
   private
 
   def require_user_logged_in
@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  def counts(user)
+    @count_kadai_tasklists = user.kadai_tasklists.count
+  end
+
 end
