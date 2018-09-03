@@ -12,20 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20180831055555) do
 
-  create_table "kadai_tasklist", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_kadai_tasklist_on_user_id", using: :btree
-  end
-
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "status"
-    t.string   "user_id"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -36,5 +29,5 @@ ActiveRecord::Schema.define(version: 20180831055555) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "kadai_tasklist", "users"
+  add_foreign_key "tasks", "users"
 end
